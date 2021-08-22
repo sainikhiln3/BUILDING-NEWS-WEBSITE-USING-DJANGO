@@ -1,0 +1,58 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="{% static '/JS/jquery-3.6.0.min.js/' %}"></script>
+
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static '/css/single.css/' %}">
+    <title>Newsvalley</title>
+    <style>
+        #more {
+            display: none;
+        }
+    </style>
+</head>
+
+<body onunload=call()>
+    <!-- navbar -->
+    <!-- Image -->
+    <div class="container" style="margin-top: 50px;">
+        <img style="height: 400px;" src="{{data.img}}" width="100%" class="img-fluid" alt="Responsive image">
+    </div>
+
+
+    <!-- Image -->
+    <!-- <div style="height: 100px; width: 100%;">
+        <h1 style="text-align: center;">Display 4</h1>
+    </div> -->
+    <!-- Text Content -->
+    <div>
+        <div class="posts">
+            <h1>{{data.title}}</h1><br><br>
+            <h4><b>Description : </b>{{data.desc}}</h4><br><br>
+            <p>{{data.content}}</p><br><br>
+
+            <a href="{{data.url}}" target="_blank"><button class="style-1" >View More</button></a>
+
+        </div>
+    </div>
+    <br><br><br>
+    <!-- Optional JavaScript -->
+
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+
+
+</html>

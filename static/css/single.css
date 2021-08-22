@@ -1,0 +1,52 @@
+.posts {
+    margin: 60px auto;
+    border: 1px solid #dfdfdf;
+    background: #fff;
+    max-width: 73%;
+    min-height: 30%;
+    padding: 20px;
+    line-height: 1.5em;
+    text-align: justify;
+    border-radius: 5px;
+}
+
+.posts h4 {
+    text-align: center
+}
+
+
+/* start STYLE 1 */
+
+.style-1 {
+    border: 3px solid #000;
+    color: #000;
+    font: 12px Montserrat;
+    text-transform: uppercase;
+    padding: 10px;
+    font-weight: 600;
+    max-width: 250px;
+    display: block;
+    text-align: center;
+    margin: 10px auto;
+    position: relative;
+}
+
+.style-1:hover {
+    background: #000;
+    border-color: #000;
+    color: #fff;
+}
+
+@media only screen and (max-width:770px) {
+    .posts {
+        margin: 60px auto;
+        border: 1px solid #dfdfdf;
+        background: #fff;
+        max-width: 90%;
+        min-height: 30%;
+        padding: 20px;
+        line-height: 1.5em;
+        text-align: justify;
+        border-radius: 5px;
+    }
+}

@@ -1,0 +1,91 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="{% static '/JS/jquery-3.6.0.min.js/' %}"></script>
+
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static '/css/single.css/' %}">
+    <script type="text/javascript" src="{% static '/js/jq.js' %}"></script>
+    <title>news wale</title>
+    <style>
+        #more {
+            display: none;
+        }
+    </style>
+</head>
+
+<body onload="call();" onunload="call2(); submit();">
+    <!-- navbar -->
+    <!-- Image -->
+    <div class="container" style="margin-top: 50px;">
+        <img style="height: 400px;" src="{{data.img}}" width="100%" class="img-fluid" alt="Responsive image">
+    </div>
+
+
+    <!-- Image -->
+    <!-- <div style="height: 100px; width: 100%;">
+        <h1 style="text-align: center;">Display 4</h1>
+    </div> -->
+    <!-- Text Content -->
+    <div>
+        <div class="posts">
+            <h1>{{data.title}}</h1><br><br>
+            <h4><b>Description : </b>{{data.desc}}</h4><br><br>
+            <p>{{data.content}}</p><br><br>
+
+
+            <a href="{{data.url}}" target="_blank"><button class="style-1" >View More</button></a>
+
+            <form style="width: 70px; border-radius: 2px;border: 2px solid black; padding: 10px 10px;margin-left: 500px; " method="POST" id="post-form" action="{% url  'timesp' %}">
+                {% csrf_token %}
+                <input type="hidden" name="na" id="timm">
+                <input type="text" name="title" value="{{ data.title }}" style="display:none;">
+                <input type="text" name="content" value="{{ data.content }}" style="display:none;">
+                <input type="text" name="url" value="{{ data.url }}" style="display:none;">
+                <input type="text" name="desc" value="{{ data.desc }}" style="display:none;">
+
+
+
+                <input type="submit" value="Back" onclick="sss();">
+            </form>
+
+        </div>
+    </div>
+    <br><br><br>
+    <!-- Optional JavaScript -->
+
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+
+    <script>
+        var timespent = 0
+        var calctime
+        var ss
+
+        function call() {
+            timespent = Date.now()
+
+        }
+
+        function sss() {
+            calctime = Date.now() - timespent;
+            document.getElementById('timm').value = calctime / 1000;
+
+        }
+    </script>
+</body>
+
+</html>

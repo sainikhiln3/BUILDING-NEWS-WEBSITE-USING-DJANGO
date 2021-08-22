@@ -1,0 +1,176 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Admin Dashboard</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="{% static '/JS/jquery-3.6.0.min.js/' %}"></script>
+
+
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static '/css/style.css/' %}">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="{% static '/lib/slick/slick.css/' %}" rel="stylesheet">
+    <link href="{% static '/lib/slick/slick-theme.css/' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static '/css/admindashbord.css/' %}">
+
+</head>
+
+<body>
+    <!---Nav bar-->
+    <nav class="navbar navbar-expand-md navbar-light">
+        <button class="navbar-toggler ml-auto mb-2 bg-light" type="button" data-toggle="collapse" data-target="#navbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbar">
+            <div class="container-fluid">
+                <div class="row">
+                    <!---Sidebar-->
+                    <div class=" col-xl-2 col-lg-3 col-md-4 sidebar fixed-top">
+                        <br>
+                        <div class="bottom-border pb-3">
+                            <a href="/user/news/" class="text-white ">Newsvalley</a>
+                        </div>
+                        <ul class="navbar-nav flex-column mt-4">
+                            {%for i in interest_list%}
+                            <li class="nav-item"><a href="{% url 'news_api' %}?category={{i}}" class="nav-link text-white p-3 mb-2
+                    sidebar-link"><i class="fa fa-newspaper-o text-light fa-lg mr-3"></i>
+                                    {{i}}</a></li>
+
+                            {%endfor%}
+
+
+
+                            <li class="nav-item"><a href="{% url 'news_api' %}?top_news={{'top_news'}}" class="nav-link text-white p-3 mb-2
+                    sidebar-link"><i class="fa fa-newspaper-o text-light fa-lg mr-3"></i>
+                                    Top News</a></li>
+
+                            <li class="nav-item"><a href="{% url 'news_api' %}?top_headlines={{'top_headlines'}}" class="nav-link text-white p-3 mb-2
+                    sidebar-link"><i class="fa fa-newspaper-o text-light fa-lg mr-3"></i>
+                                    Top Headlines</a></li>
+
+                            <li class="nav-item"><a href="/recommend/home/" class="nav-link text-white p-3 mb-2
+                    sidebar-link"><i class="fa fa-newspaper-o text-light fa-lg mr-3"></i>
+                                    Recommended</a></li>
+
+                        </ul>
+
+                    </div>
+                    <!---end of side bar-->
+                    <!---Top Nav-->
+                    <div class="col-xl-10 col-lg-9 col-md-8 ml-auto top-bar fixed-top py-2 top-nav">
+                        <div class="row align-item-center">
+                            <div class="col-md-4">
+                                <h4 class="text-light text-uppercase mb-0">Newsvalley</h4>
+                            </div>
+                            <div class="col-md-5">
+                                <a href="https://share.streamlit.io/sainikhiln3/fake-news-classifier/main/app.py"><div align="right">
+                                    <strong style="border:5px solid black; font-size:20px;">&nbsp;Fake News Classifier&nbsp;</strong>
+                            </div></a>
+                            </div>
+                            <div class="col-md-3">
+                                <ul class="navbar-nav">
+                                    <li class="nav-item icon-parent">
+                                        <li class="nav-item icon-parent">
+                                            <a href="#" class="nav-link icon-bullet">
+                                                <i class="fas fa-bell text-light fa-lg"></i></a>
+                                            <li class="nav-item ml-md-auto">
+                                                <a href="/user/logout/" class="nav-link" data-toggle="modal" data-target="#sign-out">
+                                                    <i class="fas fa-sign-out-alt text-danger fa-lg"></i></a>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!---End of Top Nav-->
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!----End of Navbar-->
+
+    <!---Modal-->
+    <div class="modal" id="sign-out">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Signout</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    press the button
+                </div>
+                <div class="modal-footer">
+                    <a href="/user/logout/"><button type="button" class="btn btn-success">
+                        Leave </button></a>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">
+                        Cancel </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!---End of Modal-->
+
+    <!-- DataTables Example -->
+    <div class="card mb-3">
+        <div class="card-header">
+            <i class="fas fa-table"></i> Data Table Example</div>
+        <div class="card-body" style="padding:50px 300px">
+            <!-- Category News Start-->
+            <div class="cat-news">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2>{{category}}</h2>
+                            <span id="re"></span>
+
+                            <div class="row sn-slider">
+                                {%for b in data%}
+                                <div class="col-md-6">
+                                    <div class="cn-img">
+                                        <img src="{{b.urlToImage}}" />
+                                        <div class="cn-title">
+                                            <a href="{% url 'single_page' %}?single_url={{b.url}}&single_title={{b.title}}&single_description={{b.description}}&single_img={{b.urlToImage}}&single_description={{b.description}}&single_content={{b.content}}" id="b1">{{b.title}}</a>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                {%endfor%}
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- Category News End-->
+
+    </div>
+
+    </div>
+
+    </div>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <!---Time spent-->
+
+
+
+
+</html>
+
+</body>
+
+</html>
